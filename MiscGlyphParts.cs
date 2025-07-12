@@ -105,7 +105,7 @@ internal static class MiscGlyphParts
         {
             field_1528 = "misc-glyph-true-dupl", // ID
             field_1529 = class_134.method_253("Glyph of True Duplication", string.Empty), // Name
-            field_1530 = class_134.method_253("The glyph of true duplication turns salt into any atom by copying the essence of another.", string.Empty), // Description
+            field_1530 = class_134.method_253("The glyph of true duplication turns salt into any atom by copying the essence of another free atom.", string.Empty), // Description
             field_1531 = 40, // Cost
             field_1539 = true, // Is a glyph
             field_1549 = trueDuplicationGlow, // Shadow/glow
@@ -192,7 +192,7 @@ internal static class MiscGlyphParts
                 PartType type = part.method_1159();
                 if (type == Filtration)
                 {
-                    if (!pss[part].field_2743)
+                    if (first && !pss[part].field_2743)
                     {
                         if (sim.FindAtomRelative(part, filterInput).method_99(out AtomReference input) && !input.field_2281 && !input.field_2282 && !sim.FindAtomRelative(part, filterOutput).method_1085())
                         {
@@ -215,7 +215,7 @@ internal static class MiscGlyphParts
                             }
                         }
                     }
-                    else
+                    else if (pss[part].field_2743)
                     {
                         // Spawn new atom
                         AtomType output = pss[part].field_2744[0];
