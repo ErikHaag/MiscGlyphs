@@ -10,6 +10,8 @@ namespace MiscGlyphs;
 internal static class MiscGlyphParts
 {
     // This isn't meant to be fancy, just a little demonstration to chuckle at.
+
+    // Greenfield
     public static PartType Filtration;
 
     public static Texture filtrationBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/filtration_base");
@@ -24,11 +26,11 @@ internal static class MiscGlyphParts
     public static Texture filtrationIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/filtration");
     public static Texture filtrationIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/filtration_hover");
 
-    public static HexIndex filterBowl = new(0, 0);
-    public static HexIndex filterInput = new(-1, 0);
-    public static HexIndex filterOutput = new(1, 0);
+    public static readonly HexIndex filterBowl = new(0, 0);
+    public static readonly HexIndex filterInput = new(-1, 0);
+    public static readonly HexIndex filterOutput = new(1, 0);
 
-
+    // Crazybot27
     public static PartType TrueCalcification;
 
     public static Texture trueCalcificationBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/true_calcification_base");
@@ -39,8 +41,9 @@ internal static class MiscGlyphParts
     public static Texture trueCalcificationIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_calcification");
     public static Texture trueCalcificationIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_calcification_hover");
 
-    public static HexIndex center = new(0, 0);
+    public static readonly HexIndex center = new(0, 0);
 
+    // Crazybot27
     public static PartType TrueDuplication;
 
     public static Texture trueDuplicationBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/true_duplication_base");
@@ -53,9 +56,20 @@ internal static class MiscGlyphParts
     public static Texture trueDuplicationIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_duplication");
     public static Texture trueDuplicationIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_duplication_hover");
 
-    public static HexIndex subjectBowl = new(0, 0);
-    public static HexIndex saltBowl = new(1, 0);
+    public static readonly HexIndex subjectBowl = new(0, 0);
+    public static readonly HexIndex saltBowl = new(1, 0);
 
+    // Crazybot27 
+    public static PartType Mitosis;
+
+    public static Texture mitosisBase = class_238.field_1989.field_90.field_160;
+    public static Texture mitosisBond = class_238.field_1989.field_90.field_161;
+    public static Texture mitosisBowl = class_238.field_1989.field_90.field_163;
+
+    public static Texture mitosisIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/mitosis");
+    public static Texture mitosisIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/mitosis_hover");
+
+    public static readonly HexIndex irisBowl = new(1, 0);
     //public static PartType Tripurification;
     //public static PartType SPTransformer;
 
@@ -121,17 +135,42 @@ internal static class MiscGlyphParts
             CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.TrueDuplicationPermission)
         };
 
+        Mitosis = new()
+        {
+            field_1528 = "misc-glyph-mitosis", // ID
+            field_1529 = class_134.method_253("Glyph of Mitosis", string.Empty), // Name
+            field_1530 = class_134.method_253("The glyph of mitosis clones an existing atom and bonds, creating an extrusion effect.", string.Empty), // Description
+            field_1531 = 40, // Cost
+            field_1539 = true, // Is a glyph
+            field_1549 = trueDuplicationGlow, // Shadow/glow
+            field_1550 = trueDuplicationOutline, // Stroke/outline
+            field_1547 = mitosisIcon, // Panel icon
+            field_1548 = mitosisIconHover, // Hovered panel icon
+            field_1538 = new class_222[1]
+            {
+                new(new HexIndex(0, 0), new HexIndex(1, 0), enum_126.Standard, struct_18.field_1431)
+            },
+            field_1540 = new HexIndex[]
+            {
+                subjectBowl,
+                irisBowl
+            },
+            field_1551 = Permissions.None,
+            CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.MitosisPermission)
+        };
+
         QApi.AddPartTypeToPanel(Filtration, false);
         QApi.AddPartTypeToPanel(TrueCalcification, false);
         QApi.AddPartTypeToPanel(TrueDuplication, false);
+        QApi.AddPartTypeToPanel(Mitosis, false);
 
         QApi.AddPartType(Filtration, static (part, pos, editor, renderer) =>
         {
             PartSimState pss = editor.method_507().method_481(part);
             class_236 uco = editor.method_1989(part, pos);
             float time = editor.method_504();
-            Vector2 offset = new(140f, 65f);
 
+            Vector2 offset = new(140f, 65f);
             renderer.method_523(filtrationBase, Vector2.Zero, offset, 0f);
             renderer.method_529(hole, filterInput, Vector2.Zero);
             renderer.method_529(bowl, filterBowl, Vector2.Zero);
@@ -179,6 +218,44 @@ internal static class MiscGlyphParts
             renderer.method_529(metalBowl, saltBowl, Vector2.Zero);
             renderer.method_529(saltSymbol, saltBowl, Vector2.Zero);
             renderer.method_521(duplicationBond, new(-31f, 21f));
+        });
+
+        QApi.AddPartType(Mitosis, static (part, pos, editor, renderer) =>
+        {
+            PartSimState pss = editor.method_507().method_481(part);
+            class_236 uco = editor.method_1989(part, pos);
+            float time = editor.method_504();
+
+            int irisFrame = 15;
+            bool afterIrisOpens = false;
+            AtomType outputAtom = pss.field_2743 ? pss.field_2744[0] : Brimstone.API.VanillaAtoms["salt"];
+            Molecule risingAtom = Molecule.method_1121(outputAtom);
+
+            renderer.method_523(mitosisBase, new Vector2(0f, -1f), new Vector2(42f, 48f), 0f);
+            renderer.method_528(mitosisBowl, subjectBowl, Vector2.Zero);
+            renderer.method_528(irisWell, irisBowl, Vector2.Zero);
+
+            Vector2 risingOffset = uco.field_1984 + class_187.field_1742.method_492(filterOutput).Rotated(uco.field_1985);
+
+            if (pss.field_2743)
+            {
+                irisFrame = class_162.method_404((int)(class_162.method_411(1f, -1f, time) * 16f), 0, 15);
+                afterIrisOpens = time > 0.5f;
+                if (!afterIrisOpens)
+                {
+                    // show atom rising behind iris
+                    Editor.method_925(risingAtom, risingOffset, new HexIndex(0, 0), 0f, 1f, time, 1f, false, null);
+                }
+            }
+            renderer.method_529(irisAnimation[irisFrame], irisBowl, Vector2.Zero);
+            renderer.method_528(irisRing, irisBowl, Vector2.Zero);
+            if (pss.field_2743 && afterIrisOpens)
+            {
+                // show atom rising infront of iris
+                Editor.method_925(risingAtom, risingOffset, new HexIndex(0, 0), 0f, 1f, time, 1f, false, null);
+            }
+            renderer.method_521(mitosisBond, new Vector2(-28f, 22f));
+            renderer.method_531(class_238.field_1989.field_90.field_165, class_238.field_1989.field_90.field_166, new HexIndex(0, 0), 0f);
         });
 
         QApi.RunAfterCycle((sim, first) =>
@@ -237,6 +314,24 @@ internal static class MiscGlyphParts
                     {
                         Brimstone.API.ChangeAtom(salt, subject.field_2280);
                         salt.field_2279.field_2276 = new class_168(seb, (enum_7)0, (enum_132)0, Brimstone.API.VanillaAtoms["salt"], class_238.field_1989.field_81.field_612, 30f);
+                    }
+                }
+                else if (type == Mitosis)
+                {
+                    if (first && !pss[part].field_2743)
+                    {
+                        if (sim.FindAtomRelative(part, subjectBowl).method_99(out AtomReference subject) && !sim.FindAtomRelative(part, irisBowl).method_1085())
+                        {
+                            Brimstone.API.AddSmallCollider(sim, part, irisBowl);
+                            pss[part].field_2743 = true;
+                            pss[part].field_2744 = new AtomType[1] { subject.field_2280 };
+                        }
+                    }
+                    else if (pss[part].field_2743)
+                    {
+                        // Spawn new atom
+                        AtomType output = pss[part].field_2744[0];
+                        Brimstone.API.AddAtom(sim, output, part, filterOutput);
                     }
                 }
             }
