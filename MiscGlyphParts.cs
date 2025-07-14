@@ -75,6 +75,7 @@ internal static class MiscGlyphParts
     public static PartType CDispersion;
     public static Texture cDispersionBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/dispersion_c_base");
     public static Texture cDispersionInput = class_238.field_1989.field_90.field_228.field_270;
+    public static Texture quintessenceSymbol = class_238.field_1989.field_90.field_238.field_341;
 
     public static Texture cDisperionGlow = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/dispersion_c_glow");
     public static Texture cDisperionStroke = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/dispersion_c_stroke");
@@ -307,8 +308,8 @@ internal static class MiscGlyphParts
             float time = editor.method_504();
 
             renderer.method_523(cDispersionBase, Vector2.Zero, new Vector2(51f, 129f), 0f);
-            renderer.method_528(cDispersionInput, quintessenceHex, Vector2.Zero);
-
+            renderer.method_529(cDispersionInput, quintessenceHex, Vector2.Zero);
+            renderer.method_529(quintessenceSymbol, quintessenceHex, Vector2.Zero);
             int irisFrame = 15;
             bool afterIrisOpens = false;
             AtomType[] cardinalAtoms = new AtomType[4]
