@@ -22,7 +22,7 @@ internal static class MiscGlyphParts
     public static Texture irisWell = class_238.field_1989.field_90.field_228.field_272;
 
     public static Texture filtrationGlow = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/triline_glow");
-    public static Texture filtrationOutline = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/triline_outline");
+    public static Texture filtrationStroke = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/triline_stroke");
     public static Texture filtrationIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/filtration");
     public static Texture filtrationIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/filtration_hover");
 
@@ -37,7 +37,7 @@ internal static class MiscGlyphParts
     public static Texture toSaltSymbol = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/symbol_to_salt");
 
     public static Texture trueCalcificationGlow = class_238.field_1989.field_97.field_382;
-    public static Texture trueCalcificationOutline = class_238.field_1989.field_97.field_383;
+    public static Texture trueCalcificationStroke = class_238.field_1989.field_97.field_383;
     public static Texture trueCalcificationIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_calcification");
     public static Texture trueCalcificationIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_calcification_hover");
 
@@ -52,7 +52,7 @@ internal static class MiscGlyphParts
     public static Texture saltSymbol = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/symbol_salt");
 
     public static Texture trueDuplicationGlow = class_238.field_1989.field_97.field_374;
-    public static Texture trueDuplicationOutline = class_238.field_1989.field_97.field_375;
+    public static Texture trueDuplicationStroke = class_238.field_1989.field_97.field_375;
     public static Texture trueDuplicationIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_duplication");
     public static Texture trueDuplicationIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/true_duplication_hover");
 
@@ -70,6 +70,25 @@ internal static class MiscGlyphParts
     public static Texture mitosisIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/mitosis_hover");
 
     public static readonly HexIndex irisBowl = new(1, 0);
+
+    // Yosh
+    public static PartType CDispersion;
+    public static Texture cDispersionBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/dispersion_c_base");
+    public static Texture cDispersionInput = class_238.field_1989.field_90.field_228.field_270;
+
+    public static Texture cDisperionGlow = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/dispersion_c_glow");
+    public static Texture cDisperionStroke = Brimstone.API.GetTexture("textures/select/erikhaag/MiscGlyphs/dispersion_c_stroke");
+    public static Texture cDispersionIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/dispersion_c");
+    public static Texture cDispersionIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/dispersion_c_hover");
+
+    public static readonly HexIndex quintessenceHex = new(0, 0);
+    public static readonly HexIndex airHex = new(0, 1);
+    public static readonly HexIndex earthHex = new(2, -1);
+    public static readonly HexIndex fireHex = new(1, -1);
+    public static readonly HexIndex waterHex = new(1, 1);
+
+
+
     //public static PartType Tripurification;
     //public static PartType SPTransformer;
 
@@ -83,7 +102,7 @@ internal static class MiscGlyphParts
             field_1531 = 30, // Cost
             field_1539 = true, // Is a glyph
             field_1549 = filtrationGlow, // Shadow/glow
-            field_1550 = filtrationOutline, // Stroke/outline
+            field_1550 = filtrationStroke, // Stroke/outline
             field_1547 = filtrationIcon, // Panel icon
             field_1548 = filtrationIconHover, // Hovered panel icon
             field_1540 = new HexIndex[]
@@ -104,7 +123,7 @@ internal static class MiscGlyphParts
             field_1531 = 30, // Cost
             field_1539 = true, // Is a glyph
             field_1549 = trueCalcificationGlow, // Shadow/glow
-            field_1550 = trueCalcificationOutline, // Stroke/outline
+            field_1550 = trueCalcificationStroke, // Stroke/outline
             field_1547 = trueCalcificationIcon, // Panel icon
             field_1548 = trueCalcificationIconHover, // Hovered panel icon
             field_1540 = new HexIndex[]
@@ -123,7 +142,7 @@ internal static class MiscGlyphParts
             field_1531 = 40, // Cost
             field_1539 = true, // Is a glyph
             field_1549 = trueDuplicationGlow, // Shadow/glow
-            field_1550 = trueDuplicationOutline, // Stroke/outline
+            field_1550 = trueDuplicationStroke, // Stroke/outline
             field_1547 = trueDuplicationIcon, // Panel icon
             field_1548 = trueDuplicationIconHover, // Hovered panel icon
             field_1540 = new HexIndex[]
@@ -143,7 +162,7 @@ internal static class MiscGlyphParts
             field_1531 = 40, // Cost
             field_1539 = true, // Is a glyph
             field_1549 = trueDuplicationGlow, // Shadow/glow
-            field_1550 = trueDuplicationOutline, // Stroke/outline
+            field_1550 = trueDuplicationStroke, // Stroke/outline
             field_1547 = mitosisIcon, // Panel icon
             field_1548 = mitosisIconHover, // Hovered panel icon
             field_1538 = new class_222[1]
@@ -159,10 +178,34 @@ internal static class MiscGlyphParts
             CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.MitosisPermission)
         };
 
+        CDispersion = new()
+        {
+            field_1528 = "misc-glyph-cDispersion", // ID
+            field_1529 = class_134.method_253("Glyph of Dispersion (C shaped)", string.Empty), // Name
+            field_1530 = class_134.method_253("The glyph of dispersion transmutes one atom of quintessence into one atom of each of the four cardinal elements.", string.Empty), // Description
+            field_1531 = 20, // Cost
+            field_1539 = true, // Is a glyph
+            field_1549 = cDisperionGlow, // Shadow/glow
+            field_1550 = cDisperionStroke, // Stroke/outline
+            field_1547 = cDispersionIcon, // Panel icon
+            field_1548 = cDispersionIconHover, // Hovered panel icon
+            field_1540 = new HexIndex[]
+            {
+                quintessenceHex,
+                airHex,
+                waterHex,
+                fireHex,
+                earthHex
+            },
+            field_1551 = Permissions.None,
+            CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.CDispersionPermission)
+        };
+
         QApi.AddPartTypeToPanel(Filtration, false);
         QApi.AddPartTypeToPanel(TrueCalcification, false);
         QApi.AddPartTypeToPanel(TrueDuplication, false);
         QApi.AddPartTypeToPanel(Mitosis, false);
+        QApi.AddPartTypeToPanel(CDispersion, false);
 
         QApi.AddPartType(Filtration, static (part, pos, editor, renderer) =>
         {
@@ -212,8 +255,7 @@ internal static class MiscGlyphParts
 
         QApi.AddPartType(TrueDuplication, static (part, pos, editor, renderer) =>
         {
-            Vector2 offset = new(41f, 48f);
-            renderer.method_523(trueDuplicationBase, Vector2.Zero, offset, 0f);
+            renderer.method_523(trueDuplicationBase, Vector2.Zero, new Vector2(41f, 48f), 0f);
             renderer.method_529(bowl, subjectBowl, Vector2.Zero);
             renderer.method_529(metalBowl, saltBowl, Vector2.Zero);
             renderer.method_529(saltSymbol, saltBowl, Vector2.Zero);
@@ -256,6 +298,69 @@ internal static class MiscGlyphParts
             }
             renderer.method_521(mitosisBond, new Vector2(-28f, 22f));
             renderer.method_531(class_238.field_1989.field_90.field_165, class_238.field_1989.field_90.field_166, new HexIndex(0, 0), 0f);
+        });
+
+        QApi.AddPartType(CDispersion, static (part, pos, editor, renderer) =>
+        {
+            PartSimState pss = editor.method_507().method_481(part);
+            class_236 uco = editor.method_1989(part, pos);
+            float time = editor.method_504();
+
+            renderer.method_523(cDispersionBase, Vector2.Zero, new Vector2(51f, 129f), 0f);
+            renderer.method_528(cDispersionInput, quintessenceHex, Vector2.Zero);
+
+            int irisFrame = 15;
+            bool afterIrisOpens = false;
+            AtomType[] cardinalAtoms = new AtomType[4]
+            {
+                Brimstone.API.VanillaAtoms["air"],
+                Brimstone.API.VanillaAtoms["water"],
+                Brimstone.API.VanillaAtoms["fire"],
+                Brimstone.API.VanillaAtoms["earth"]
+            };
+
+            HexIndex[] outputHexes = new HexIndex[4]
+            {
+                airHex,
+                waterHex,
+                fireHex,
+                earthHex
+            };
+
+            Texture[][] cardinalIrises = new Texture[4][]
+            {
+                class_238.field_1989.field_90.field_247,
+                class_238.field_1989.field_90.field_252,
+                class_238.field_1989.field_90.field_249,
+                class_238.field_1989.field_90.field_248
+            };
+
+            if (pss.field_2743)
+            {
+                irisFrame = class_162.method_404((int)(class_162.method_411(1f, -1f, time) * 16f), 0, 15);
+                afterIrisOpens = time > 0.5f;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                HexIndex h = outputHexes[i];
+                Vector2 risingOffset = uco.field_1984 + class_187.field_1742.method_492(h).Rotated(uco.field_1985);
+                Molecule risingAtom = Molecule.method_1121(cardinalAtoms[i]);
+
+                renderer.method_528(irisWell, h, Vector2.Zero);
+                if (pss.field_2743 && !afterIrisOpens)
+                {
+                    // show atom rising behind iris
+                    Editor.method_925(risingAtom, risingOffset, new HexIndex(0, 0), 0f, 1f, time, 1f, false, null);
+                }
+                renderer.method_529(cardinalIrises[i][irisFrame], h, Vector2.Zero);
+                renderer.method_528(irisRing, h, Vector2.Zero);
+                if (pss.field_2743 && afterIrisOpens)
+                {
+                    // show atom rising infront of iris
+                    Editor.method_925(risingAtom, risingOffset, new HexIndex(0, 0), 0f, 1f, time, 1f, false, null);
+                }
+            }
         });
 
         QApi.RunAfterCycle((sim, first) =>
@@ -332,6 +437,58 @@ internal static class MiscGlyphParts
                         // Spawn new atom
                         AtomType output = pss[part].field_2744[0];
                         Brimstone.API.AddAtom(sim, output, part, filterOutput);
+                    }
+                }
+                else if (type == CDispersion)
+                {
+                    HexIndex[] outputHexes = new HexIndex[4]
+                    {
+                        airHex,
+                        waterHex,
+                        fireHex,
+                        earthHex
+                    };
+
+                    if (first && !pss[part].field_2743)
+                    {
+                        if (sim.FindAtomRelative(part, quintessenceHex).method_99(out AtomReference quintessence) && quintessence.field_2280 == Brimstone.API.VanillaAtoms["quintessence"])
+                        {
+                            bool blocked = false;
+                            foreach (HexIndex h in outputHexes)
+                            {
+                                if (sim.FindAtomRelative(part, h).method_1085())
+                                {
+                                    blocked = true;
+                                    break;
+                                }
+                            }
+                            if (!blocked)
+                            {
+                                Brimstone.API.RemoveAtom(quintessence);
+                                seb.field_3937.Add(new(seb, quintessence.field_2278, quintessence.field_2280));
+                                pss[part].field_2743 = true;
+                                foreach (HexIndex h in outputHexes)
+                                {
+                                    Brimstone.API.AddSmallCollider(sim, part, h);
+                                }
+                            }
+                        }
+                    }
+                    else if (pss[part].field_2743)
+                    {
+                        AtomType[] cardinalAtoms = new AtomType[4]
+                        {
+                            Brimstone.API.VanillaAtoms["air"],
+                            Brimstone.API.VanillaAtoms["water"],
+                            Brimstone.API.VanillaAtoms["fire"],
+                            Brimstone.API.VanillaAtoms["earth"]
+                        };
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            // Spawn new atom
+                            Brimstone.API.AddAtom(sim, cardinalAtoms[i], part, outputHexes[i]);
+                        }
                     }
                 }
             }
