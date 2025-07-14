@@ -452,7 +452,7 @@ internal static class MiscGlyphParts
 
                     if (first && !pss[part].field_2743)
                     {
-                        if (sim.FindAtomRelative(part, quintessenceHex).method_99(out AtomReference quintessence) && quintessence.field_2280 == Brimstone.API.VanillaAtoms["quintessence"])
+                        if (sim.FindAtomRelative(part, quintessenceHex).method_99(out AtomReference quintessence) && !quintessence.field_2281 && !quintessence.field_2282 && quintessence.field_2280 == Brimstone.API.VanillaAtoms["quintessence"])
                         {
                             bool blocked = false;
                             foreach (HexIndex h in outputHexes)
