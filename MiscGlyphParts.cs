@@ -1,6 +1,5 @@
 ﻿using Quintessential;
 using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
 using PartType = class_139;
 using Permissions = enum_149;
 using Texture = class_256;
@@ -402,7 +401,7 @@ internal static class MiscGlyphParts
                     {
                         // Spawn new atom
                         AtomType output = pss[part].field_2744[0];
-                        Brimstone.API.AddAtom(sim, output, part, filterOutput);
+                        Brimstone.API.AddAtom(sim, part, filterOutput, output);
                     }
                 }
                 else if (type == TrueCalcification)
@@ -437,7 +436,7 @@ internal static class MiscGlyphParts
                     {
                         // Spawn new atom
                         AtomType output = pss[part].field_2744[0];
-                        Brimstone.API.AddAtom(sim, output, part, filterOutput);
+                        Brimstone.API.AddAtom(sim, part, irisBowl, output);
                     }
                 }
                 else if (type == CDispersion)
@@ -488,7 +487,7 @@ internal static class MiscGlyphParts
                         for (int i = 0; i < 4; i++)
                         {
                             // Spawn new atom
-                            Brimstone.API.AddAtom(sim, cardinalAtoms[i], part, outputHexes[i]);
+                            Brimstone.API.AddAtom(sim, part, outputHexes[i], cardinalAtoms[i]);
                         }
                     }
                 }
