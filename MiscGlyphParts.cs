@@ -29,6 +29,27 @@ internal static class MiscGlyphParts
     public static readonly HexIndex filterInput = new(-1, 0);
     public static readonly HexIndex filterOutput = new(1, 0);
 
+    public static PartType Union;
+
+    public static Texture unionBase = class_238.field_1989.field_90.field_255.field_288;
+    public static Texture unionBond = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/union_bond");
+
+    public static Texture unionIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/union");
+    public static Texture unionIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/union_hover");
+    
+    public static readonly HexIndex unionL = new(0, 0);
+    public static readonly HexIndex unionR = new(1, 0);
+
+    public static PartType Severance;
+
+    public static Texture severanceBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/severance_base");
+    public static Texture severanceBowl = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/severance_bowl");
+
+    public static Texture severanceIcon = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/severance");
+    public static Texture severanceIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/severance_hover");
+
+    //public static PartType SPTransformer;
+
     // Crazybot27
     public static PartType TrueCalcification;
 
@@ -42,7 +63,6 @@ internal static class MiscGlyphParts
 
     public static readonly HexIndex center = new(0, 0);
 
-    // Crazybot27
     public static PartType TrueDuplication;
 
     public static Texture trueDuplicationBase = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/true_duplication_base");
@@ -58,7 +78,6 @@ internal static class MiscGlyphParts
     public static readonly HexIndex subjectBowl = new(0, 0);
     public static readonly HexIndex saltBowl = new(1, 0);
 
-    // Crazybot27 
     public static PartType Mitosis;
 
     public static Texture mitosisBase = class_238.field_1989.field_90.field_160;
@@ -69,6 +88,8 @@ internal static class MiscGlyphParts
     public static Texture mitosisIconHover = Brimstone.API.GetTexture("textures/parts/erikhaag/MiscGlyphs/icons/mitosis_hover");
 
     public static readonly HexIndex irisBowl = new(1, 0);
+
+    //public static PartType Tripurification;
 
     // Yosh
     public static PartType CDispersion;
@@ -86,11 +107,6 @@ internal static class MiscGlyphParts
     public static readonly HexIndex earthHex = new(2, -1);
     public static readonly HexIndex fireHex = new(1, -1);
     public static readonly HexIndex waterHex = new(1, 1);
-
-
-
-    //public static PartType Tripurification;
-    //public static PartType SPTransformer;
 
     public static void AddPartTypes()
     {
@@ -113,6 +129,45 @@ internal static class MiscGlyphParts
             },
             field_1551 = Permissions.None,
             CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.FiltrationPermission)
+        };
+
+        Union = new()
+        {
+            field_1528 = "misc-glyph-union", // ID
+            field_1529 = class_134.method_253("Glyph of Union", string.Empty), // Name
+            field_1530 = class_134.method_253("The glyph of union connects two molecules together without adding a bond, afterwards they will move as a group.", string.Empty), // Description
+            field_1531 = 15, // Cost
+            field_1539 = true, // Is a glyph
+            field_1549 = trueDuplicationGlow, // Shadow/glow
+            field_1550 = trueDuplicationStroke, // Stroke/outline
+            field_1547 = unionIcon, // Panel icon
+            field_1548 = unionIconHover, // Hovered panel icon
+            field_1540 = new HexIndex[]
+            {
+                unionL,
+                unionR
+            },
+            field_1551 = Permissions.None,
+            CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.UnionPermission)
+        };
+
+        Severance = new()
+        {
+            field_1528 = "misc-glyph-severance", // ID
+            field_1529 = class_134.method_253("Glyph of Severance", string.Empty), // Name
+            field_1530 = class_134.method_253("The glyph of severance removes any ties connecting the atom above it to a larger molecule.", string.Empty), // Description
+            field_1531 = 25, // Cost
+            field_1539 = true, // Is a glyph
+            field_1549 = trueCalcificationGlow, // Shadow/glow
+            field_1550 = trueCalcificationStroke, // Stroke/outline
+            field_1547 = severanceIcon, // Panel icon
+            field_1548 = severanceIconHover, // Hovered panel icon
+            field_1540 = new HexIndex[]
+            {
+                center
+            },
+            field_1551 = Permissions.None,
+            CustomPermissionCheck = perms => perms.Contains(MiscGlyphs.SeverancePermission)
         };
 
         TrueCalcification = new()
@@ -202,6 +257,8 @@ internal static class MiscGlyphParts
         };
 
         QApi.AddPartTypeToPanel(Filtration, false);
+        QApi.AddPartTypeToPanel(Union, false);
+        QApi.AddPartTypeToPanel(Severance, false);
         QApi.AddPartTypeToPanel(TrueCalcification, false);
         QApi.AddPartTypeToPanel(TrueDuplication, false);
         QApi.AddPartTypeToPanel(Mitosis, false);
@@ -216,7 +273,7 @@ internal static class MiscGlyphParts
             Vector2 offset = new(140f, 65f);
             renderer.method_523(filtrationBase, Vector2.Zero, offset, 0f);
             renderer.method_529(hole, filterInput, Vector2.Zero);
-            renderer.method_529(bowl, filterBowl, Vector2.Zero);
+            renderer.method_528(bowl, filterBowl, Vector2.Zero);
             renderer.method_529(irisWell, filterOutput, Vector2.Zero);
 
             int irisFrame = 15;
@@ -245,11 +302,25 @@ internal static class MiscGlyphParts
             }
         });
 
+        QApi.AddPartType(Union, static (part, pos, editor, renderer) =>
+        {
+            renderer.method_523(unionBase, Vector2.Zero, new Vector2(42f, 48f), 0f);
+            renderer.method_528(mitosisBowl, unionL, Vector2.Zero);
+            renderer.method_528(mitosisBowl, unionR, Vector2.Zero);
+            renderer.method_521(unionBond, new Vector2(-30f, 12f));
+        });
+
+        QApi.AddPartType(Severance, static (part, pos, editor, renderer) =>
+        {
+            renderer.method_523(severanceBase, Vector2.Zero, new Vector2(42f, 48f), 0f);
+            renderer.method_529(severanceBowl, center, Vector2.Zero);
+        });
+
         QApi.AddPartType(TrueCalcification, static (part, pos, editor, renderer) =>
         {
             Vector2 offset = new(41f, 48f);
             renderer.method_523(trueCalcificationBase, Vector2.Zero, offset, 0f);
-            renderer.method_529(bowl, center, Vector2.Zero);
+            renderer.method_528(bowl, center, Vector2.Zero);
             renderer.method_529(toSaltSymbol, center, Vector2.Zero);
         });
 
@@ -402,6 +473,20 @@ internal static class MiscGlyphParts
                         // Spawn new atom
                         AtomType output = pss[part].field_2744[0];
                         Brimstone.API.AddAtom(sim, part, filterOutput, output);
+                    }
+                }
+                else if (type == Union)
+                {
+                    Brimstone.API.JoinMoleculesAtHexes(sim, part, unionL, unionR);
+                }
+                else if (type == Severance)
+                {
+                    HexIndex c = part.method_1184(center);
+                    if (sim.FindAtom(c).method_99(out AtomReference atom) && atom.field_2281)
+                    {
+                        AtomType aT = atom.field_2280;
+                        Brimstone.API.RemoveHexFromMolecule(atom.field_2277, c);
+                        Brimstone.API.AddAtom(sim, part, center, aT);
                     }
                 }
                 else if (type == TrueCalcification)

@@ -1,5 +1,5 @@
 Name: MiscGlyphs
-Version: 0.2.2
+Version: 0.3.0
 Icon: mg_icon
 Desc: Adds a bunch of silly ideas that I and others come up with.
 DLL: "MiscGlyphs.dll"
@@ -7,7 +7,7 @@ Dependences:
 - Name: Quintessential
   Version: 0.5.1
 - Name: Brimstone
-  Version: 1.4.0
+  Version: 1.4.1
 OptionalDependencies:
 - Name: FTSIGCTU
   Version: 0.7.4
